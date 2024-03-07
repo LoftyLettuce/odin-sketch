@@ -17,6 +17,16 @@ body
 }
 .board
 {
+  display: flex;
+  flex-direction: column;
   width: 50vw;
   height: 50vw;
+}
+.row
+{
+  display: flex;
+}
+.column, .board
+{
+  border: 1px solid;
 }
