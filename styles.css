@@ -15,3 +15,8 @@ body
   text-align: center;
   border: 2px solid lavender;
 }
+.board
+{
+  width: 50vw;
+  height: 50vw;
+}
