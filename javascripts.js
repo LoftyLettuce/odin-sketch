@@ -1,7 +1,8 @@
 let question = document.querySelector(".size-input");
 let inputBox = document.querySelector("#user");
-let opacity = 1;
+let body = document.querySelector('body');
 inputBox.addEventListener("keydown", function(e){
+  let opacity = 1;
   if (e.key == "Enter" && isNaN(e.target.value) == 0 && Number(e.target.value) != 0)
   {
     let opacing = setInterval(function()
@@ -12,6 +13,7 @@ inputBox.addEventListener("keydown", function(e){
       {
         console.log("stop");
         clearInterval(opacing);
+        createDivs();
         inputBox.remove();
         question.remove();
       }
@@ -19,3 +21,8 @@ inputBox.addEventListener("keydown", function(e){
     }, 100)
   }
 });
+function createDivs(){
+  let board = document.createElement('div');
+  board.className = "board";
+  body.appendChild(board);
+}
