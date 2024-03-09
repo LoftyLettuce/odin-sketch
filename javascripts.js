@@ -45,11 +45,17 @@ function createDivs(n){
     }
   }
 }
+function addColor(){
+  let a = Math.random()*255;
+  let b = Math.random()*255;
+  let c = Math.random()*255;
+  return "rgb(" +a +"," +b +"," +c +")";
+}
 // draw function
 function changingColor(e){
   if (e.target.className == "column")
   {
-    e.target.style.backgroundColor = "red";
+    e.target.style.backgroundColor = addColor();
   }
 }
 window.addEventListener('mousedown', function(e){
