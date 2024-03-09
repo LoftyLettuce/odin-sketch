@@ -28,5 +28,5 @@ body
 }
 .column, .board
 {
-  border: 1px solid;
+  border: 0.5px solid;
 }
