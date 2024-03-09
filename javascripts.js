@@ -5,14 +5,14 @@ inputBox.addEventListener("keydown", function(e){
   let opacity = 1;
   if (e.key == "Enter" && isNaN(e.target.value) == 0 && Number(e.target.value) != 0)
   {
-    let opacing = setInterval(function()
+    // create fading effect
+    let fading = setInterval(function()
     {
       inputBox.style.opacity = opacity;
       question.style.opacity = opacity;
       if (opacity <= 0)
       {
-        console.log("stop");
-        clearInterval(opacing);
+        clearInterval(fading);
         inputBox.remove();
         question.remove();
         createDivs(Number(e.target.value));
@@ -22,23 +22,26 @@ inputBox.addEventListener("keydown", function(e){
   }
 });
 function createDivs(n){
+  //create a whole board in 1 sec
+  let time = 1000/(n*n);
   let board = document.createElement('div');
   board.className = "board";
   body.appendChild(board);
-  console.log(typeof(board.offsetHeight));
   for (let i = 0; i < n; i++)
   {
     let row = document.createElement('div');
     row.className = "row";
     row.style.height = board.offsetHeight/n + "vw";
+    board.appendChild(row);
     for (let u = 0; u < n; u++)
     {
-      let column = document.createElement('div');
-      column.className = "column";
-      column.style.height = "100%";
-      column.style.width = board.offsetWidth/n + "vw";
-      row.appendChild(column);
+      setTimeout(function(){
+        let column = document.createElement('div');
+        column.className = "column";
+        column.style.width = "100%";
+        row.appendChild(column);
+        // so the squares will appear one by one
+      }, time*(u+i*n));
     }
-    board.appendChild(row);
   }
 }
