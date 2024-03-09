@@ -45,3 +45,19 @@ function createDivs(n){
     }
   }
 }
+// draw function
+function changingColor(e){
+  if (e.target.className == "column")
+  {
+    e.target.style.backgroundColor = "red";
+  }
+}
+window.addEventListener('mousedown', function(e){
+  changingColor(e);
+  this.window.addEventListener('mouseover', draw = function(e){
+    changingColor(e);
+  })
+})
+window.addEventListener('mouseup', function(){
+  this.window.removeEventListener('mouseover', draw);
+})
