@@ -3,7 +3,8 @@ const inputBox = document.querySelector("#user");
 const body = document.querySelector('body');
 inputBox.addEventListener("keydown", function(e){
   let opacity = 1;
-  if (e.key == "Enter" && isNaN(e.target.value) == 0 && Number(e.target.value) != 0)
+  const userInput = e.target.value;
+  if (e.key == "Enter" && isNaN(userInput) == 0 && Number(userInput) != 0 && Number(userInput) <= 100)
   {
     // create fading effect
     let fading = setInterval(function()
@@ -15,7 +16,7 @@ inputBox.addEventListener("keydown", function(e){
         clearInterval(fading);
         inputBox.remove();
         question.remove();
-        createDivs(Number(e.target.value));
+        createDivs(Number(userInput));
       }
       opacity -= 0.3;
     }, 100)
