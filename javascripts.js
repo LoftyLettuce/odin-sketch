@@ -45,21 +45,34 @@ function createDivs(n){
     }
   }
 }
-function fuse(s, rgb){
+function readRgbValue(s){
   const end1 = s.indexOf(',');
   const end2 = s.slice(end1+1).indexOf(',')+end1;
   const end3 = s.slice(end2+1).indexOf(')')+end2;
   const r = Number(s.slice(4, end1));
   const b = Number(s.slice(end1+1, end2+1));
   const g = Number(s.slice(end2+2, end3+1));
-  return "rgb(" +(r+rgb[0])/2 +"," +(b+rgb[1])/2 +"," +(g+rgb[2])/2 +")";
+  const rbg = [r, b, g];
+  return rbg;
+}
+function fuse(recentColor, oldColor){
+  const newColor = readRgbValue(recentColor);
+  return "rgb(" 
+  + (newColor[0] + oldColor[0])/2 + "," 
+  + (newColor[1] + oldColor[1])/2 + "," 
+  + (newColor[2] + oldColor[2])/2 
+  + ")";
 }
 function addColor(){
   //wont random to white
   const r = Math.random()*254+1;
   const b = Math.random()*254+1;
   const g = Math.random()*254+1;
-  return "rgb(" +r +"," +b +"," +g +")";
+  return "rgb(" 
+  + r + "," 
+  + b + "," 
+  + g 
+  + ")";
 }
 // draw function
 function changingColor(e, color, rgb){
@@ -77,13 +90,7 @@ function changingColor(e, color, rgb){
 }
 window.addEventListener('mousedown', function(e){
   const color = addColor()
-  const end1 = color.indexOf(',');
-  const end2 = color.slice(end1+1).indexOf(',')+end1;
-  const end3 = color.slice(end2+1).indexOf(')')+end2;
-  const r = Number(color.slice(4, end1));
-  const b = Number(color.slice(end1+1, end2+1));
-  const g = Number(color.slice(end2+2, end3+1));
-  const rgb = [r, g, b];
+  const rgb = readRgbValue(color);
   changingColor(e, color, rgb);
   this.window.addEventListener('mouseover', draw = function(e){
     changingColor(e, color, rgb);
